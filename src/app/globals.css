@@ -1,26 +1,70 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0a0a0a;
 }
 
+/* Brand & design tokens for Tailwind v4 */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Mission palette */
+  --color-mission: #0d5c3d;        /* primary deep emerald */
+  --color-mission-dark: #073d28;
+  --color-mission-deep: #0a3a26;   /* footer / banner background */
+  --color-mission-soft: #e9f2ed;   /* tinted surface / bullet check */
+  --color-mission-tint: #f3f8f4;   /* very faint mission wash */
+  --color-saffron: #ff9933;        /* India saffron */
+  --color-saffron-deep: #c2410c;
+  --color-saffron-cta: #f59e2c;    /* CTA button orange */
+
+  /* Navy / dark blue used for "Can This Be Built?" + Solution accents */
+  --color-navy: #102a52;
+  --color-navy-dark: #0b1f3d;
+  --color-navy-soft: #e8eef7;
+
+  /* Surfaces */
+  --color-paper: #ffffff;
+  --color-cream: #faf8f3;          /* annual-report off-white */
+  --color-card: #f7f6f1;           /* card surrounding background in reference */
+  --color-line: #e7e5e0;
+  --color-line-soft: #efeee9;
+
+  /* Ink */
+  --color-ink: #0a0a0a;
+  --color-ink-soft: #5b5b5b;
+  --color-ink-muted: #8a8a8a;
+
+  /* Fonts */
+  --font-sans: var(--font-montserrat);
+  --font-display: var(--font-montserrat);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Display headings — same family, heavier weight, tighter tracking */
+.font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+/* Numerals — tabular for stat grids */
+.font-tabular {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* Section dividers — subtle hairline used across pages */
+.hairline {
+  border-color: var(--color-line);
 }
