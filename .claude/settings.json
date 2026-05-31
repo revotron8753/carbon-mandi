@@ -9,7 +9,8 @@
       "Bash(node scripts/rshot.mjs desktop \"India Already Has\" nat-d)",
       "Bash(node scripts/nav.mjs)",
       "Bash(curl -s -o /dev/null -w \"blogs: %{http_code}\\\\n\" http://localhost:3000/blogs/blog)",
-      "Bash(node -e \"const b=require\\('./src/data/blogs.json'\\); console.log\\('count:',b.length\\); console.log\\('keys:',Object.keys\\(b[0]\\)\\); console.log\\('sample handle:',b[0].handle\\); console.log\\('sample seoTitle:',b[0].seoTitle\\); console.log\\('blogId:',b[0].blogId\\);\")"
+      "Bash(node -e \"const b=require\\('./src/data/blogs.json'\\); console.log\\('count:',b.length\\); console.log\\('keys:',Object.keys\\(b[0]\\)\\); console.log\\('sample handle:',b[0].handle\\); console.log\\('sample seoTitle:',b[0].seoTitle\\); console.log\\('blogId:',b[0].blogId\\);\")",
+      "Bash(curl -s http://localhost:3000/llms.txt)"
     ]
   }
 }

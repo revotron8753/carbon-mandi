@@ -1,0 +1,115 @@
+# robots.txt for carbonmandi.com
+# Goal: Maximum visibility across search engines AND AI answer engines (AEO)
+# Last updated: 2026
+
+# ----------------------------------------------------------------------
+# 1. DEFAULT — Allow all standard search engine crawlers
+# ----------------------------------------------------------------------
+User-agent: *
+Allow: /
+
+# Optional: block low-value / private paths so crawl budget goes to content.
+# Uncomment and adjust to match your stack (Shopify / Next.js).
+# Disallow: /cart
+# Disallow: /checkout
+# Disallow: /account
+# Disallow: /admin
+# Disallow: /*?*sort=
+# Disallow: /*?*filter=
+
+# ----------------------------------------------------------------------
+# 2. SEARCH ENGINES — explicit allows
+# ----------------------------------------------------------------------
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# ----------------------------------------------------------------------
+# 3. AI / LLM CRAWLERS — explicitly ALLOWED for AEO visibility
+#    (These let your content surface inside AI assistants & AI search)
+# ----------------------------------------------------------------------
+
+# OpenAI — ChatGPT & ChatGPT Search
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Anthropic — Claude
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Google — Gemini / Vertex AI (keeps you eligible for AI Overviews & Gemini)
+User-agent: Google-Extended
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+
+# Microsoft Copilot
+User-agent: msnbot
+Allow: /
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Amazon
+User-agent: Amazonbot
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Common Crawl (feeds training data for many open models)
+User-agent: CCBot
+Allow: /
+
+# You.com
+User-agent: YouBot
+Allow: /
+
+# DuckDuckGo AI Assist
+User-agent: DuckAssistBot
+Allow: /
+
+# ----------------------------------------------------------------------
+# 4. SITEMAP — helps every crawler discover all your pages
+# ----------------------------------------------------------------------
+Sitemap: https://carbonmandi.com/sitemap.xml
