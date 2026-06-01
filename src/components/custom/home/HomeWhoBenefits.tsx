@@ -4,7 +4,6 @@ import {
   Globe2,
   HeartHandshake,
   Leaf,
-  Quote,
   ShieldCheck,
   Sprout,
   Target,
@@ -226,13 +225,18 @@ export function HomeWhoBenefits() {
             />
             <div
               aria-hidden
-              className="absolute inset-0 bg-[linear-gradient(to_right,rgba(7,61,40,0.94)_0%,rgba(7,61,40,0.8)_48%,rgba(7,61,40,0.45)_100%)]"
+              className="absolute inset-0 bg-[linear-gradient(to_right,rgba(7,61,40,0.97)_0%,rgba(7,61,40,0.92)_100%)]"
             />
             <div className="relative grid grid-cols-1 gap-7 p-7 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12 lg:p-10">
               <div>
-                <Quote size={26} strokeWidth={1.5} className="text-white/70" />
-                <p className="font-display mt-2 text-[clamp(1.1rem,1.9vw,1.55rem)] font-extrabold uppercase leading-tight text-white">
+                <p className="font-display text-[clamp(1.1rem,1.9vw,1.55rem)] font-extrabold uppercase leading-tight text-white">
+                  <span className="mr-1 align-middle text-[1.3em] font-bold text-[#7cc59e]">
+                    &ldquo;
+                  </span>
                   Empowering Farmers. Energizing India. Healing The Planet.
+                  <span className="ml-1 align-middle text-[1.3em] font-bold text-[#7cc59e]">
+                    &rdquo;
+                  </span>
                 </p>
                 <p className="mt-3 max-w-md text-[13px] leading-snug text-white/85">
                   Building a prosperous, sustainable and self-reliant India.

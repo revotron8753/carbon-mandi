@@ -114,7 +114,7 @@ export function HomeWhoUsesH2() {
 
           {/* 6 industry cards — under the heading; swipeable carousel on mobile,
               6-up grid on desktop */}
-          <ul className="no-scrollbar mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-6 md:overflow-visible md:pb-0">
+          <ul className="no-scrollbar mt-12 -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [&>li:first-child]:ml-6 [&>li:first-child]:scroll-ml-6 [&>li:last-child]:mr-6 md:mx-0 md:grid md:grid-cols-6 md:overflow-visible md:pb-0 md:[&>li:first-child]:ml-0 md:[&>li:last-child]:mr-0">
             {USES.map((u) => (
               <li key={u.label} className="flex shrink-0 basis-[40%] snap-start flex-col sm:basis-[28%] md:basis-auto">
                 <div className="flex items-start gap-1.5">

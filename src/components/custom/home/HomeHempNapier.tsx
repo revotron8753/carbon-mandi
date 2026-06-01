@@ -214,9 +214,9 @@ export function HomeHempNapier() {
           4.png shows through on the left ~3% sliver. Two stacked panels
           (cream + paper) cover the rest. */}
       <div className="relative isolate flex flex-col overflow-hidden">
-        {/* 4.png backdrop — full bleed, visible only where the inner panels
-            don't cover (i.e. the left sliver). */}
-        <div className="absolute inset-0 -z-10">
+        {/* 4.png backdrop — desktop only; the left sliver it creates looks poor
+            on mobile, so it's hidden there and the panels go full-bleed. */}
+        <div className="absolute inset-0 -z-10 hidden lg:block">
           <Image
             src={IMAGES.section4Bg.src}
             alt={IMAGES.section4Bg.alt}
@@ -226,8 +226,9 @@ export function HomeHempNapier() {
           />
         </div>
 
-        {/* Content rail — offset from the left so the backdrop sliver shows */}
-        <div className="flex flex-1 flex-col pl-8 lg:pl-12">
+        {/* Content rail — full width on mobile; offset on desktop so the
+            backdrop sliver shows. */}
+        <div className="flex flex-1 flex-col lg:pl-12">
           {/* — Top panel: How Does It Work? / Intercropping (cream tint) — */}
           <div className="flex-1 bg-cream/95 backdrop-blur-sm">
             <div className="mx-auto max-w-7xl px-6 py-12 lg:px-10 lg:py-16">

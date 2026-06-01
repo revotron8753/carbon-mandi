@@ -1,9 +1,4 @@
-import {
-  Atom,
-  HandshakeIcon as Handshake,
-  Quote,
-  Users,
-} from "lucide-react";
+import { Atom, HandshakeIcon as Handshake, Users } from "lucide-react";
 
 import { PhotoSlot } from "@/components/ui/photo-slot";
 
@@ -76,7 +71,7 @@ export function HomeBeAPart() {
         <p className="mt-12 text-[13px] font-extrabold uppercase tracking-[0.16em] text-mission">
           We Invite Visionaries &amp; Change Makers
         </p>
-        <ul className="no-scrollbar mt-5 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-4 sm:overflow-visible sm:pb-0">
+        <ul className="no-scrollbar mt-5 -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [&>li:first-child]:ml-6 [&>li:first-child]:scroll-ml-6 [&>li:last-child]:mr-6 sm:mx-0 sm:grid sm:grid-cols-4 sm:overflow-visible sm:pb-0 sm:[&>li:first-child]:ml-0 sm:[&>li:last-child]:mr-0">
           {INVITES.map((inv) => (
             <li
               key={inv.label}
@@ -125,34 +120,39 @@ export function HomeBeAPart() {
           />
           <div
             aria-hidden
-            className="absolute inset-0 bg-[linear-gradient(to_right,rgba(10,58,38,0.94)_0%,rgba(10,58,38,0.8)_50%,rgba(10,58,38,0.5)_100%)]"
+            className="absolute inset-0 bg-[linear-gradient(to_right,rgba(10,58,38,0.97)_0%,rgba(10,58,38,0.92)_100%)]"
           />
           <div className="relative grid grid-cols-1 gap-7 p-7 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10 lg:p-10">
             {/* Quote */}
             <div>
-              <Quote size={30} strokeWidth={1.5} className="text-white/70" />
-              <p className="font-display mt-2 text-[clamp(1.3rem,2vw,1.75rem)] font-extrabold leading-[1.18] tracking-tight text-white">
-                A Greener India. A Stronger India. A Self-Reliant
-                India.&rdquo;
+              <p className="font-display text-[clamp(1.3rem,2vw,1.75rem)] font-extrabold leading-[1.18] tracking-tight text-white">
+                <span className="mr-1 align-middle text-[1.3em] font-bold text-[#7cc59e]">
+                  &ldquo;
+                </span>
+                A Greener India. A Stronger India. A Self-Reliant India.
+                <span className="ml-1 align-middle text-[1.3em] font-bold text-[#7cc59e]">
+                  &rdquo;
+                </span>
               </p>
               <p className="mt-3 text-[14px] font-semibold text-white/90">
                 Let&rsquo;s Build It. Together.
               </p>
             </div>
 
-            {/* Join the Movement + QR */}
-            <div className="flex items-center gap-4 rounded-xl bg-white/10 px-5 py-4 text-white ring-1 ring-white/20 backdrop-blur-sm">
+            {/* Join the Movement + QR — icon on top / text below on mobile,
+                horizontal row on larger screens. */}
+            <div className="flex flex-col items-center gap-4 rounded-xl bg-white/10 p-5 text-center text-white ring-1 ring-white/20 backdrop-blur-sm sm:flex-row sm:text-left">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white ring-1 ring-white/40">
                 <Users size={18} strokeWidth={1.8} />
               </span>
-              <p className="font-display flex-1 text-[clamp(0.8rem,1vw,0.95rem)] font-extrabold uppercase leading-snug tracking-wide">
+              <p className="font-display text-[clamp(0.8rem,1vw,0.95rem)] font-extrabold uppercase leading-snug tracking-wide sm:flex-1">
                 Join The Movement.
                 <br />
                 Be A Partner. Be A Champion.
                 <br />
                 Be The Change India Needs.
               </p>
-              <span aria-hidden className="h-14 w-px shrink-0 bg-white/30" />
+              <span aria-hidden className="hidden h-14 w-px shrink-0 bg-white/30 sm:block" />
               <div className="flex shrink-0 flex-col items-center">
                 <QRPlaceholder />
                 <p className="mt-2 text-[10px] font-medium uppercase tracking-wide text-white/85">

@@ -5,6 +5,7 @@ import { ArrowRight, Leaf, Users } from "lucide-react";
 import { IMAGES } from "@/lib/images";
 import { MandiLogo } from "./MandiLogo";
 import { NavMenu } from "../NavMenu";
+import { MobileNav } from "../MobileNav";
 
 const TRUST_ITEMS = [
   { label1: "IIT Ropar", label2: "Incubated", emblem: <IITRoparEmblem /> },
@@ -63,10 +64,11 @@ export function HomeHero() {
           </span>
         </Link>
 
-        {/* Primary nav (desktop) — National Projects · Team · Blogs */}
+        {/* Primary nav (desktop) — National Projects · Team · मंडी · Blogs */}
         <NavMenu className="hidden self-center lg:flex" />
 
-        <div className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.08em] text-ink">
+        {/* Desktop — static Made in India + flag (nav is inline above) */}
+        <div className="hidden items-center gap-2 self-start text-[11px] font-extrabold uppercase tracking-[0.08em] text-ink lg:flex">
           <span className="leading-tight">
             MADE IN
             <br />
@@ -80,6 +82,9 @@ export function HomeHero() {
             className="h-auto w-7 rounded-sm ring-1 ring-line"
           />
         </div>
+
+        {/* Mobile — tap the flag to open the menu */}
+        <MobileNav className="self-center lg:hidden" />
       </div>
 
       {/* Main content — fills remaining space, vertically centered */}
