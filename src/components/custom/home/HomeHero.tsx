@@ -72,14 +72,13 @@ export function HomeHero() {
             <br />
             INDIA
           </span>
-          <span
-            aria-hidden
-            className="flex h-7 w-5 flex-col overflow-hidden rounded-sm ring-1 ring-line"
-          >
-            <span className="block h-1/3 bg-saffron" />
-            <span className="block h-1/3 bg-white" />
-            <span className="block h-1/3 bg-[#138808]" />
-          </span>
+          <Image
+            src="/images/indian-flag.png"
+            alt="Indian flag"
+            width={30}
+            height={20}
+            className="h-auto w-7 rounded-sm ring-1 ring-line"
+          />
         </div>
       </div>
 

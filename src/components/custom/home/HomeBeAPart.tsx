@@ -52,116 +52,96 @@ const INVITES = [
 
 export function HomeBeAPart() {
   return (
-    <section className="relative isolate overflow-hidden bg-paper">
-      {/* ── Background image layer (integrated later) + left white wash ─────
-          Mirrors the Who-Benefits approach: a full-bleed PhotoSlot sits behind
-          everything, washed solid-white over the left content column and fading
-          to clear so the right-hand scene (turbine, H₂ plant, flag, field)
-          reads through behind the quote + Join-the-Movement band. */}
-      <div className="absolute inset-0 -z-10">
-        <PhotoSlot
-          slot="beAPartHero"
-          fill
-          className="rounded-none ring-0"
-          imgClassName="object-cover object-[50%_35%]"
-        />
-        {/* Desktop: left→right white wash (content left, scene right). */}
-        <div
-          aria-hidden
-          className="absolute inset-0 hidden lg:block lg:bg-[linear-gradient(to_right,white_0%,white_38%,rgba(255,255,255,0.72)_44%,rgba(255,255,255,0.28)_52%,rgba(255,255,255,0.08)_60%,transparent_66%)]"
-        />
-        {/* Mobile: full light wash so text reads over the whole scene. */}
-        <div aria-hidden className="absolute inset-0 bg-white/70 lg:hidden" />
-      </div>
+    <section className="relative isolate overflow-hidden bg-cream">
+      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
+        {/* Heading at the top of the section */}
+        <div className="max-w-3xl">
+          <h2 className="font-display font-extrabold uppercase leading-[1.02] tracking-tight">
+            <span className="block text-[clamp(1.5rem,2.6vw,2.05rem)] text-ink">
+              Be A Part Of
+            </span>
+            <span className="block text-[clamp(2rem,4vw,3rem)] text-mission">
+              India&rsquo;s Green Hydrogen Revolution
+            </span>
+          </h2>
+          <span aria-hidden className="mt-4 block h-[3px] w-12 rounded-full bg-mission" />
+          <p className="mt-4 max-w-xl text-[14px] leading-relaxed text-ink-soft">
+            Together, we can build a clean, self-reliant, and future-ready India
+            powered by farmers, driven by innovation, and inspired by
+            sustainability.
+          </p>
+        </div>
 
-      <div className="mx-auto max-w-7xl px-6 py-10 lg:px-10 lg:py-14">
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.42fr_1fr] lg:gap-10">
-          {/* ── LEFT — heading + invitation cards ──────────────────────── */}
-          <div className="flex flex-col">
-            <h2 className="font-display font-extrabold uppercase leading-[1.02] tracking-tight">
-              <span className="block text-[clamp(1.5rem,2.6vw,2.05rem)] text-ink">
-                Be A Part Of
-              </span>
-              <span className="block text-[clamp(2rem,4vw,3rem)] text-mission">
-                India&rsquo;s Green Hydrogen
-              </span>
-              <span className="block text-[clamp(2rem,4vw,3rem)] text-mission">
-                Revolution
-              </span>
-            </h2>
-            <span aria-hidden className="mt-3 block h-[3px] w-12 rounded-full bg-mission" />
+        {/* We Invite — 4 invitation cards in a full-width row */}
+        <p className="mt-12 text-[13px] font-extrabold uppercase tracking-[0.16em] text-mission">
+          We Invite Visionaries &amp; Change Makers
+        </p>
+        <ul className="no-scrollbar mt-5 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-4 sm:overflow-visible sm:pb-0">
+          {INVITES.map((inv) => (
+            <li
+              key={inv.label}
+              className="flex shrink-0 basis-[62%] snap-start flex-col rounded-xl border border-line bg-white p-2.5 shadow-sm sm:basis-auto"
+            >
+              <div className="flex items-start gap-2">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-mission text-white">
+                  <inv.Icon size={15} strokeWidth={1.8} />
+                </span>
+                <p className="whitespace-pre-line text-[10px] font-extrabold uppercase leading-tight text-ink">
+                  {inv.label}
+                </p>
+              </div>
 
-            <p className="mt-4 max-w-xl text-[13.5px] leading-relaxed text-ink-soft">
-              Together, we can build a clean, self-reliant, and future-ready
-              India powered by farmers, driven by innovation, and inspired by
-              sustainability.
-            </p>
+              <PhotoSlot
+                slot={inv.slot}
+                aspectRatio="3/2"
+                className="mt-2.5 rounded-lg ring-1 ring-line"
+              />
 
-            <p className="mt-7 text-center text-[13px] font-extrabold uppercase tracking-[0.16em] text-mission">
-              We Invite Visionaries &amp; Change Makers
-            </p>
+              <ul className="mt-2.5 space-y-1.5">
+                {inv.bullets.map((b) => (
+                  <li
+                    key={b}
+                    className="flex items-start gap-1.5 text-[10.5px] leading-snug text-ink-soft"
+                  >
+                    <span
+                      aria-hidden
+                      className="mt-1.5 inline-block h-1 w-1 shrink-0 rounded-full bg-mission"
+                    />
+                    {b}
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
 
-            {/* 4 invitation cards in a single row */}
-            <ul className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {INVITES.map((inv) => (
-                <li
-                  key={inv.label}
-                  className="flex flex-col rounded-xl border border-line bg-white p-2.5 shadow-sm"
-                >
-                  <div className="flex items-start gap-2">
-                    <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-mission text-white">
-                      <inv.Icon size={15} strokeWidth={1.8} />
-                    </span>
-                    <p className="whitespace-pre-line text-[10px] font-extrabold uppercase leading-tight text-ink">
-                      {inv.label}
-                    </p>
-                  </div>
-
-                  <PhotoSlot
-                    slot={inv.slot}
-                    aspectRatio="3/2"
-                    className="mt-2.5 rounded-lg ring-1 ring-line"
-                  />
-
-                  <ul className="mt-2.5 space-y-1.5">
-                    {inv.bullets.map((b) => (
-                      <li
-                        key={b}
-                        className="flex items-start gap-1.5 text-[10.5px] leading-snug text-ink-soft"
-                      >
-                        <span
-                          aria-hidden
-                          className="mt-1.5 inline-block h-1 w-1 shrink-0 rounded-full bg-mission"
-                        />
-                        {b}
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* ── RIGHT — quote (top) + Join band (bottom) over the scene ──── */}
-          <div className="relative flex flex-col">
-            {/* Quote — sits over the lighter sky portion of the backdrop */}
-            <div className="pt-1">
-              <Quote size={30} strokeWidth={1.5} className="text-mission/70" />
-              <p className="font-display mt-2 text-[clamp(1.3rem,2vw,1.75rem)] font-extrabold leading-[1.18] tracking-tight text-mission">
-                A Greener India.
-                <br />
-                A Stronger India.
-                <br />
-                A Self-Reliant India.&rdquo;
+        {/* Closing banner — quote + Join-the-Movement / QR over the scene photo */}
+        <div className="relative isolate mt-12 overflow-hidden rounded-2xl">
+          <PhotoSlot
+            slot="beAPartHero"
+            fill
+            className="rounded-none ring-0"
+            imgClassName="object-cover object-[50%_35%]"
+          />
+          <div
+            aria-hidden
+            className="absolute inset-0 bg-[linear-gradient(to_right,rgba(10,58,38,0.94)_0%,rgba(10,58,38,0.8)_50%,rgba(10,58,38,0.5)_100%)]"
+          />
+          <div className="relative grid grid-cols-1 gap-7 p-7 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-10 lg:p-10">
+            {/* Quote */}
+            <div>
+              <Quote size={30} strokeWidth={1.5} className="text-white/70" />
+              <p className="font-display mt-2 text-[clamp(1.3rem,2vw,1.75rem)] font-extrabold leading-[1.18] tracking-tight text-white">
+                A Greener India. A Stronger India. A Self-Reliant
+                India.&rdquo;
               </p>
-              <p className="mt-3 text-[14px] font-semibold text-ink">
+              <p className="mt-3 text-[14px] font-semibold text-white/90">
                 Let&rsquo;s Build It. Together.
               </p>
             </div>
 
-            {/* Join the Movement band — pinned to the bottom of the column so it
-                lines up with the card row; bleeds to the right extreme. */}
-            <div className="mt-auto -mr-6 flex items-center gap-4 bg-mission px-5 py-4 text-white lg:-mr-10 lg:px-7 lg:py-5">
+            {/* Join the Movement + QR */}
+            <div className="flex items-center gap-4 rounded-xl bg-white/10 px-5 py-4 text-white ring-1 ring-white/20 backdrop-blur-sm">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white ring-1 ring-white/40">
                 <Users size={18} strokeWidth={1.8} />
               </span>

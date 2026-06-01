@@ -271,6 +271,93 @@ export const IMAGES = {
     filename: "plant-tree.png · 1130×832 · 4:3",
     alt: "Indian farmer and a young girl together planting a sapling in fresh soil at golden sunrise.",
   },
+
+  // ── Mandi page: Biomass Aggregation Platform ───────────────────────────
+  // Hero — wide, bleeds to the right edge behind the heading.
+  mandiHero: {
+    src: "/images/mandi/hero.png",
+    filename: "mandi/hero.png · wide",
+    alt: "Green hydrogen biomass facility with H₂ storage tanks and a tractor hauling a trailer of harvested biomass through a field at sunrise.",
+  },
+  // Explore Biomass — 5 feedstock cards (≈4:3)
+  mandiBiomassNapier: {
+    src: "/images/mandi/napier-grass.png",
+    filename: "mandi/napier-grass.png · 4:3",
+    alt: "Tall, dense green napier grass growing in a field — a high-yield energy crop.",
+  },
+  mandiBiomassHemp: {
+    src: "/images/mandi/hemp-stalks.png",
+    filename: "mandi/hemp-stalks.png · 4:3",
+    alt: "Industrial hemp stalks growing tall — sustainable biomass for industrial and energy use.",
+  },
+  mandiBiomassPaddy: {
+    src: "/images/mandi/paddy-straw.png",
+    filename: "mandi/paddy-straw.png · 4:3",
+    alt: "Bundles of paddy straw stacked in a harvested field — agri-residue for clean energy conversion.",
+  },
+  mandiBiomassWheat: {
+    src: "/images/mandi/wheat-straw.png",
+    filename: "mandi/wheat-straw.png · 4:3",
+    alt: "Golden wheat straw in a sunlit field — widely available biomass with high energy potential.",
+  },
+  mandiBiomassAgri: {
+    src: "/images/mandi/agri-residue.png",
+    filename: "mandi/agri-residue.png · 4:3",
+    alt: "Mixed agricultural crop residue and stubble — responsibly sourced biomass.",
+  },
+  // Our Final Products — 3 product cards (≈16:9)
+  mandiProductHydrogen: {
+    src: "/images/mandi/green-hydrogen.png",
+    filename: "mandi/green-hydrogen.png · 16:9",
+    alt: "Green hydrogen storage tanks labelled H₂ at a clean production facility.",
+  },
+  mandiProductCBG: {
+    src: "/images/mandi/cbg.png",
+    filename: "mandi/cbg.png · 16:9",
+    alt: "Compressed bio-gas (CBG) plant with green domed digesters.",
+  },
+  mandiProductCarbonCredits: {
+    src: "/images/mandi/carbon-credits.png",
+    filename: "mandi/carbon-credits.png · 16:9",
+    alt: "Lush green forest beside a calm river representing carbon-credit climate value.",
+  },
+  // Sustainable Products from Partners — 6 product cards (1:1)
+  mandiPartnerPottingMix: {
+    src: "/images/mandi/organic-potting-mix.png",
+    filename: "mandi/organic-potting-mix.png · 1:1",
+    alt: "Bag of organic potting mix for healthy plant growth.",
+  },
+  mandiPartnerLubricants: {
+    src: "/images/mandi/plant-based-lubricants.png",
+    filename: "mandi/plant-based-lubricants.png · 1:1",
+    alt: "Green canister of plant-based, eco-friendly lubricant.",
+  },
+  mandiPartnerJute: {
+    src: "/images/mandi/jute-products.png",
+    filename: "mandi/jute-products.png · 1:1",
+    alt: "Reusable jute bag — a sustainable, biodegradable product.",
+  },
+  mandiPartnerHempFabric: {
+    src: "/images/mandi/hemp-fabric.png",
+    filename: "mandi/hemp-fabric.png · 1:1",
+    alt: "Rolls of natural hemp fabric — a strong and durable textile.",
+  },
+  mandiPartnerCleaners: {
+    src: "/images/mandi/natural-cleaners.png",
+    filename: "mandi/natural-cleaners.png · 1:1",
+    alt: "Bottles of natural, plant-based cleaning products.",
+  },
+  mandiPartnerCoir: {
+    src: "/images/mandi/coir-products.png",
+    filename: "mandi/coir-products.png · 1:1",
+    alt: "Compressed coir blocks — an eco-friendly coconut-fibre product.",
+  },
+  // CTA band — hands holding soil with a young sprouting plant.
+  mandiCtaSapling: {
+    src: "/images/mandi/plant-in-hand.png",
+    filename: "mandi/plant-in-hand.png · wide",
+    alt: "Two cupped hands holding fresh soil with a young green plant sprouting — growing India's green future together.",
+  },
 } as const;
 
 export type ImageKey = keyof typeof IMAGES;

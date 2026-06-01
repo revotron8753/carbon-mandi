@@ -96,44 +96,42 @@ const VALIDATION_BADGES = [
 
 export function HomeWhoUsesH2() {
   return (
-    <section className="flex min-h-dvh flex-col bg-paper">
+    <section className="flex flex-col bg-paper">
       {/* ── TOP PANEL — WHO WILL USE HYDROGEN? ───────────────────────── */}
       <div className="flex-1">
-        <div className="mx-auto max-w-7xl px-6 py-8 lg:px-10 lg:py-10">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[auto_1fr] lg:items-center lg:gap-24">
-            {/* Heading — compact column hugging the left, with a big gap to
-                the right so the section breathes. */}
-            <div className="lg:w-[clamp(16rem,18vw,18rem)]">
-              <h2 className="font-display text-[clamp(1.8rem,3vw,2.6rem)] font-extrabold uppercase leading-[1.04] tracking-tight">
-                <span className="block whitespace-nowrap text-ink">Who Will Use</span>
-                <span className="block text-mission">Hydrogen?</span>
-              </h2>
-              <div className="mt-3 h-1 w-12 bg-mission" />
-              <p className="mt-4 max-w-xs text-[13px] leading-relaxed text-ink">
-                Powering Industries. Enabling Progress. Building a Clean Future.
-              </p>
-            </div>
-
-            {/* 6 industry cards */}
-            <ul className="grid grid-cols-3 gap-3 md:grid-cols-6">
-              {USES.map((u) => (
-                <li key={u.label} className="flex flex-col">
-                  <div className="flex items-start gap-1.5">
-                    <u.Icon size={16} strokeWidth={1.8} className="mt-0.5 shrink-0 text-mission" />
-                    <p className="whitespace-pre-line text-[10.5px] font-extrabold uppercase leading-tight text-ink">
-                      {u.label}
-                    </p>
-                  </div>
-                  <div className="mt-2 overflow-hidden rounded-md ring-1 ring-line">
-                    <PhotoSlot slot={u.slot} aspectRatio="1/1" className="rounded-none ring-0" />
-                  </div>
-                  <p className="mt-2 text-[10.5px] leading-snug text-ink-soft">
-                    {u.body}
-                  </p>
-                </li>
-              ))}
-            </ul>
+        <div className="mx-auto max-w-7xl px-6 py-14 lg:px-10 lg:py-20">
+          {/* Heading — full-width header at the top of the section */}
+          <div className="max-w-2xl">
+            <h2 className="font-display text-[clamp(1.8rem,3.4vw,2.8rem)] font-extrabold uppercase leading-[1.04] tracking-tight">
+              <span className="text-ink">Who Will Use </span>
+              <span className="text-mission">Hydrogen?</span>
+            </h2>
+            <div className="mt-4 h-1 w-12 bg-mission" />
+            <p className="mt-4 max-w-md text-[14px] leading-relaxed text-ink">
+              Powering Industries. Enabling Progress. Building a Clean Future.
+            </p>
           </div>
+
+          {/* 6 industry cards — under the heading; swipeable carousel on mobile,
+              6-up grid on desktop */}
+          <ul className="no-scrollbar mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 md:grid md:grid-cols-6 md:overflow-visible md:pb-0">
+            {USES.map((u) => (
+              <li key={u.label} className="flex shrink-0 basis-[40%] snap-start flex-col sm:basis-[28%] md:basis-auto">
+                <div className="flex items-start gap-1.5">
+                  <u.Icon size={16} strokeWidth={1.8} className="mt-0.5 shrink-0 text-mission" />
+                  <p className="whitespace-pre-line text-[10.5px] font-extrabold uppercase leading-tight text-ink">
+                    {u.label}
+                  </p>
+                </div>
+                <div className="mt-2 overflow-hidden rounded-md ring-1 ring-line">
+                  <PhotoSlot slot={u.slot} aspectRatio="1/1" className="rounded-none ring-0" />
+                </div>
+                <p className="mt-2 text-[10.5px] leading-snug text-ink-soft">
+                  {u.body}
+                </p>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 
@@ -240,9 +238,9 @@ export function HomeWhoUsesH2() {
               <p className="text-[10.5px] font-extrabold uppercase tracking-[0.18em] text-navy/70">
                 Technology Readiness Roadmap
               </p>
-              <ol className="mt-2 flex flex-wrap items-center justify-between gap-y-2 gap-x-1">
+              <ol className="no-scrollbar mt-2 flex items-center gap-x-1 gap-y-2 overflow-x-auto pb-1 md:flex-wrap md:justify-between md:overflow-visible md:pb-0">
                 {TRL.map((t, i) => (
-                  <li key={t.tier} className="flex items-center gap-1">
+                  <li key={t.tier} className="flex shrink-0 items-center gap-1">
                     <div className="flex flex-col items-center text-center">
                       <span className="font-display text-[13px] font-extrabold text-navy">
                         {t.tier}

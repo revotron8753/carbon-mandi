@@ -81,7 +81,7 @@ export function HomeNationalOpportunity() {
   return (
     <>
       {/* ── SCREEN 3A — Intro: heading + mission + 3 highlights + backdrop ── */}
-      <section className="relative isolate flex min-h-dvh items-center overflow-hidden bg-paper">
+      <section className="relative isolate flex items-center overflow-hidden bg-paper">
         {/* 3a backdrop — full width, anchored right so the India+H2 composite stays visible */}
         <div className="absolute inset-0 -z-10">
           <Image
@@ -98,7 +98,7 @@ export function HomeNationalOpportunity() {
           <div aria-hidden className="absolute inset-0 bg-white/72 lg:hidden" />
         </div>
 
-        <div className="mx-auto w-full max-w-7xl px-6 py-14 lg:px-10 lg:py-16">
+        <div className="mx-auto w-full max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
           {/* Eyebrow with green line */}
           <div className="flex items-center gap-3">
             <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-mission">
@@ -109,7 +109,7 @@ export function HomeNationalOpportunity() {
           </div>
 
           {/* 2-col content */}
-          <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-12">
+          <div className="mt-12 grid grid-cols-1 gap-12 lg:mt-16 lg:grid-cols-[1.15fr_1fr] lg:gap-12">
             {/* LEFT — heading + mission box */}
             <div>
               <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-extrabold leading-[1.06] tracking-tight">
@@ -136,7 +136,7 @@ export function HomeNationalOpportunity() {
             </div>
 
             {/* RIGHT — 3 stat highlights */}
-            <ul className="space-y-6">
+            <ul className="space-y-7 lg:space-y-8">
               {HIGHLIGHTS.map((h, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span
@@ -160,9 +160,9 @@ export function HomeNationalOpportunity() {
       </section>
 
       {/* ── SCREEN 3B — 3 P/O/S cards + Our Mission strip ─────────────── */}
-      <section className="relative flex min-h-dvh flex-col bg-paper">
-        {/* Cards centered in viewport */}
-        <div className="mx-auto flex w-full max-w-7xl flex-1 items-center px-6 py-14 lg:px-10 lg:py-16">
+      <section className="relative flex flex-col bg-paper">
+        {/* Cards + mission strip */}
+        <div className="mx-auto flex w-full max-w-7xl flex-1 items-center px-6 py-20 lg:px-10 lg:py-24">
           <ul className="grid w-full grid-cols-1 gap-6 md:grid-cols-3">
             {CARDS.map((c) => (
               <li

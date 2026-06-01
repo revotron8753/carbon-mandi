@@ -98,7 +98,7 @@ export function HomeHempNapier() {
           Layout: hemp+napier image bleeds full width, cream panel fades in
           on the left over the photo, stat tiles overlay on the right, and
           HEMP / NAPIER GRASS pills sit at the bottom of the visible image. */}
-      <div className="relative isolate flex min-h-dvh items-center overflow-hidden">
+      <div className="relative isolate flex items-center overflow-hidden">
         {/* Backdrop image — full-bleed, anchored slightly right so the mature
             hemp + napier composition stays visible on the right side. */}
         <div className="absolute inset-0 -z-10">
@@ -121,7 +121,7 @@ export function HomeHempNapier() {
         </div>
 
         {/* Content + stat tiles */}
-        <div className="mx-auto w-full max-w-7xl px-6 py-12 lg:px-10 lg:py-16">
+        <div className="mx-auto w-full max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.25fr_auto] lg:items-center lg:gap-12">
             {/* LEFT — heading + cellulose (sits over the cream area) */}
             <div className="max-w-xl">
@@ -213,7 +213,7 @@ export function HomeHempNapier() {
       {/* ── 4B: Intercropping + Circular Economy — combined viewport ──
           4.png shows through on the left ~3% sliver. Two stacked panels
           (cream + paper) cover the rest. */}
-      <div className="relative isolate flex min-h-dvh flex-col overflow-hidden">
+      <div className="relative isolate flex flex-col overflow-hidden">
         {/* 4.png backdrop — full bleed, visible only where the inner panels
             don't cover (i.e. the left sliver). */}
         <div className="absolute inset-0 -z-10">
@@ -230,7 +230,7 @@ export function HomeHempNapier() {
         <div className="flex flex-1 flex-col pl-8 lg:pl-12">
           {/* — Top panel: How Does It Work? / Intercropping (cream tint) — */}
           <div className="flex-1 bg-cream/95 backdrop-blur-sm">
-            <div className="mx-auto max-w-7xl px-6 py-8 lg:px-10 lg:py-9">
+            <div className="mx-auto max-w-7xl px-6 py-12 lg:px-10 lg:py-16">
               <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.8fr_1.4fr] lg:gap-12">
                 {/* Left — title + roots */}
                 <div>
@@ -293,7 +293,7 @@ export function HomeHempNapier() {
 
           {/* — Bottom panel: Supports Circular Economy (paper) — */}
           <div className="flex-1 bg-paper/95 backdrop-blur-sm">
-            <div className="mx-auto max-w-7xl px-6 py-7 lg:px-10 lg:py-8">
+            <div className="mx-auto max-w-7xl px-6 py-12 lg:px-10 lg:py-14">
               <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_2.8fr_auto] lg:items-center lg:gap-6">
                 {/* Left — heading */}
                 <div>

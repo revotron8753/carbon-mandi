@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 
 import { PhotoSlot } from "@/components/ui/photo-slot";
-import { cn } from "@/lib/utils";
 import { MandiLogo } from "./MandiLogo";
 
 const BENEFITS = [
@@ -149,141 +148,111 @@ export function HomeWhoBenefits() {
       {/* ── BLOCK 1 — WHO BENEFITS? — full-section photo backdrop with
           left white-wash (cards area) + bottom-right dark green wash
           (badges area). Photo dissolves smoothly into both surfaces. */}
-      <div className="relative isolate overflow-hidden">
-        {/* Full-section photo + stacked gradient washes */}
-        <div className="absolute inset-0 -z-10">
-          <PhotoSlot slot="whoBenefitsHero" fill className="rounded-none ring-0" />
-          {/* Left white wash — solid white over the cards area, smooth fade
-              through the middle, fully transparent on the right where the
-              father + son + plant should read clearly. */}
-          <div
-            aria-hidden
-            className="absolute inset-0 bg-[linear-gradient(to_right,white_0%,white_52%,rgba(255,255,255,0.78)_60%,rgba(255,255,255,0.4)_68%,rgba(255,255,255,0.12)_78%,transparent_88%)]"
-          />
-        </div>
+      <div className="relative isolate overflow-hidden bg-cream">
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-20">
+          {/* Heading at the top of the section */}
+          <div className="flex items-center gap-3">
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-mission-soft text-mission ring-1 ring-mission/15">
+              <Leaf size={14} strokeWidth={1.8} />
+            </span>
+            <h2 className="font-display text-[clamp(1.6rem,3vw,2.6rem)] font-extrabold uppercase leading-none tracking-tight text-mission">
+              Who Benefits?
+            </h2>
+          </div>
+          <p className="mt-3 flex items-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.16em] text-mission">
+            Real Impact. Real People. Real Change.
+            <span aria-hidden className="inline-block h-px w-10 bg-mission/40" />
+          </p>
+          <p className="mt-3 max-w-2xl text-[13px] leading-relaxed text-ink-soft">
+            Our model creates a positive ripple effect across farmers,
+            communities, industries and the planet.
+          </p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1.65fr_1fr]">
-          {/* LEFT — heading + REAL IMPACT eyebrow + description + 5 cards
-              (sits over the white-washed half of the backdrop) */}
-          <div className="relative px-6 pt-6 pb-3 lg:px-10 lg:pt-7">
-            <div className="flex items-center gap-3">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-mission-soft text-mission ring-1 ring-mission/15">
-                <Leaf size={14} strokeWidth={1.8} />
-              </span>
-              <h2 className="font-display text-[clamp(1.5rem,3vw,2.4rem)] font-extrabold uppercase leading-none tracking-tight text-mission">
-                Who Benefits?
-              </h2>
-            </div>
-            <p className="mt-2 flex items-center gap-3 text-[11px] font-extrabold uppercase tracking-[0.16em] text-mission">
-              Real Impact. Real People. Real Change.
-              <span aria-hidden className="inline-block h-px w-10 bg-mission/40" />
-            </p>
-            <p className="mt-2 max-w-2xl text-[12.5px] leading-relaxed text-ink-soft">
-              Our model creates a positive ripple effect across farmers,
-              communities, industries and the planet.
-            </p>
-
-            {/* 5 stakeholder cards */}
-            <ul className="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-5">
-              {BENEFITS.map((b, idx) => {
-                // On phones the 5-card grid is 2 columns, leaving the last card
-                // alone in its row — let it span both columns (with a wider
-                // banner crop) so the row reads as balanced. Desktop is 5-up.
-                const isWide = idx === BENEFITS.length - 1;
-                return (
-                <li
-                  key={b.label}
-                  className={cn(
-                    "flex flex-col overflow-hidden rounded-xl border border-line bg-paper",
-                    isWide && "max-lg:col-span-2"
-                  )}
-                >
-                  <div className="bg-mission-soft px-3 py-2">
-                    <div className="flex items-start gap-2">
-                      <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-mission text-white">
-                        <b.Icon size={12} strokeWidth={1.8} />
-                      </span>
-                      <div className="min-w-0">
-                        <p className="whitespace-pre-line text-[10px] font-extrabold uppercase leading-tight text-ink">
-                          {b.label}
-                        </p>
-                        <p className="mt-0.5 text-[10px] font-medium leading-tight text-ink-soft">
-                          {b.tagline}
-                        </p>
-                      </div>
+          {/* 5 stakeholder cards — full-width row; swipeable carousel on mobile */}
+          <ul className="no-scrollbar mt-10 -mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [&>li:first-child]:ml-6 [&>li:first-child]:scroll-ml-6 [&>li:last-child]:mr-6 lg:mx-0 lg:grid lg:grid-cols-5 lg:overflow-visible lg:pb-0 lg:[&>li:first-child]:ml-0 lg:[&>li:last-child]:mr-0">
+            {BENEFITS.map((b) => (
+              <li
+                key={b.label}
+                className="flex shrink-0 basis-[62%] snap-start flex-col overflow-hidden rounded-xl border border-line bg-paper sm:basis-[44%] lg:basis-auto"
+              >
+                <div className="bg-mission-soft px-3 py-2">
+                  <div className="flex items-start gap-2">
+                    <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-mission text-white">
+                      <b.Icon size={12} strokeWidth={1.8} />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="whitespace-pre-line text-[10px] font-extrabold uppercase leading-tight text-ink">
+                        {b.label}
+                      </p>
+                      <p className="mt-0.5 text-[10px] font-medium leading-tight text-ink-soft">
+                        {b.tagline}
+                      </p>
                     </div>
                   </div>
-                  <div
-                    className={cn(
-                      "relative w-full overflow-hidden",
-                      isWide ? "max-lg:aspect-[16/7] lg:aspect-[4/5]" : "aspect-[4/5]"
-                    )}
-                  >
-                    <PhotoSlot
-                      slot={b.slot}
-                      fill
-                      className="rounded-none ring-0"
-                      imgClassName="object-cover object-top"
-                    />
-                  </div>
-                  <ul className="flex-1 space-y-1 px-3 py-2.5">
-                    {b.bullets.map((bullet) => (
-                      <li
-                        key={bullet}
-                        className="flex items-start gap-1.5 text-[10.5px] leading-snug text-ink-soft"
-                      >
-                        <span
-                          aria-hidden
-                          className="mt-1.5 inline-block h-1 w-1 shrink-0 rounded-full bg-mission"
-                        />
-                        {bullet}
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-                );
-              })}
-            </ul>
-          </div>
+                </div>
+                <div className="relative aspect-[4/5] w-full overflow-hidden">
+                  <PhotoSlot
+                    slot={b.slot}
+                    fill
+                    className="rounded-none ring-0"
+                    imgClassName="object-cover object-top"
+                  />
+                </div>
+                <ul className="flex-1 space-y-1 px-3 py-2.5">
+                  {b.bullets.map((bullet) => (
+                    <li
+                      key={bullet}
+                      className="flex items-start gap-1.5 text-[10.5px] leading-snug text-ink-soft"
+                    >
+                      <span
+                        aria-hidden
+                        className="mt-1.5 inline-block h-1 w-1 shrink-0 rounded-full bg-mission"
+                      />
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
 
-          {/* RIGHT — quote overlay at top, badges floating over dark green bottom wash */}
-          <div className="relative isolate flex flex-col px-6 pt-7 pb-4 lg:px-8 lg:pt-8 lg:pb-5">
-            {/* Dark mission wash — short strip just behind the badges, with
-                a soft top fade so it doesn't look like a hard rectangle. */}
+          {/* Closing banner — emotional photo backdrop + quote + impact badges */}
+          <div className="relative isolate mt-10 overflow-hidden rounded-2xl">
+            <PhotoSlot
+              slot="whoBenefitsHero"
+              fill
+              className="rounded-none ring-0"
+              imgClassName="object-cover object-center"
+            />
             <div
               aria-hidden
-              className="absolute inset-0 -z-10 bg-[linear-gradient(to_top,rgba(7,61,40,0.92)_0%,rgba(7,61,40,0.88)_10%,rgba(7,61,40,0.55)_18%,rgba(7,61,40,0.2)_26%,transparent_34%)]"
+              className="absolute inset-0 bg-[linear-gradient(to_right,rgba(7,61,40,0.94)_0%,rgba(7,61,40,0.8)_48%,rgba(7,61,40,0.45)_100%)]"
             />
+            <div className="relative grid grid-cols-1 gap-7 p-7 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-12 lg:p-10">
+              <div>
+                <Quote size={26} strokeWidth={1.5} className="text-white/70" />
+                <p className="font-display mt-2 text-[clamp(1.1rem,1.9vw,1.55rem)] font-extrabold uppercase leading-tight text-white">
+                  Empowering Farmers. Energizing India. Healing The Planet.
+                </p>
+                <p className="mt-3 max-w-md text-[13px] leading-snug text-white/85">
+                  Building a prosperous, sustainable and self-reliant India.
+                </p>
+              </div>
 
-            {/* Quote overlay at the TOP */}
-            <div>
-              <Quote size={26} strokeWidth={1.5} className="text-mission/70" />
-              <p className="font-display mt-1 text-[clamp(1.05rem,1.7vw,1.4rem)] font-extrabold uppercase leading-tight text-mission">
-                Empowering Farmers.
-                <br />
-                Energizing India.
-                <br />
-                Healing The Planet.
-              </p>
-              <p className="mt-3 max-w-xs text-[12.5px] leading-snug text-ink">
-                Building a prosperous, sustainable and self-reliant India.
-                <Quote size={14} strokeWidth={1.5} className="ml-1 inline align-baseline text-mission/65" />
-              </p>
+              {/* 4 impact badges */}
+              <ul className="grid grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4 lg:grid-cols-2 lg:gap-x-8">
+                {BENEFIT_BADGES.map((b) => (
+                  <li key={b.label} className="flex items-center gap-2 text-left">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15 text-white ring-1 ring-white/25">
+                      <b.Icon size={15} strokeWidth={1.8} />
+                    </span>
+                    <span className="whitespace-pre-line text-[9.5px] font-extrabold uppercase leading-tight text-white">
+                      {b.label.replace(" ", "\n")}
+                    </span>
+                  </li>
+                ))}
+              </ul>
             </div>
-
-            {/* 4 badges floating over the solid bottom of the wash */}
-            <ul className="mt-auto flex items-end justify-around gap-2 pt-6">
-              {BENEFIT_BADGES.map((b) => (
-                <li key={b.label} className="flex items-center gap-2 text-left">
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white/15 text-white ring-1 ring-white/25">
-                    <b.Icon size={15} strokeWidth={1.8} />
-                  </span>
-                  <span className="whitespace-pre-line text-[9px] font-extrabold uppercase leading-tight text-white">
-                    {b.label.replace(" ", "\n")}
-                  </span>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </div>
@@ -441,7 +410,8 @@ export function HomeWhoBenefits() {
             India&rsquo;s future with Green Hydrogen.
           </p>
           <span aria-hidden className="hidden h-7 w-px bg-navy/15 md:block" />
-          <div className="flex flex-col gap-1">
+          {/* Logo lockup hidden on mobile — it crowds the heading on small screens */}
+          <div className="hidden flex-col gap-1 md:flex">
             <MandiLogo className="h-8 w-auto" />
             <span className="text-[7.5px] font-semibold tracking-wide text-mission/70">
               Farm to Fuel. Future for All.

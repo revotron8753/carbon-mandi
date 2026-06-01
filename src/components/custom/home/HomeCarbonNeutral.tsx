@@ -39,7 +39,7 @@ export function HomeCarbonNeutral() {
       </div>
 
       {/* ── Top: logo + headline + CTA card (left column) ──────────────────── */}
-      <div className="mx-auto w-full max-w-7xl flex-1 px-6 pt-8 lg:px-10 lg:pt-10">
+      <div className="mx-auto w-full max-w-7xl flex-1 px-6 pt-12 lg:px-10 lg:pt-16">
         <Link href="/" className="inline-flex flex-col gap-1.5" aria-label="Carbon Mandi — home">
           <MandiLogo className="h-11 w-auto md:h-12" />
           <span className="text-[10.5px] font-medium tracking-wide text-ink-soft md:text-[11px]">

@@ -80,7 +80,7 @@ export function HomeWhatIsGreenH2() {
         </div>
 
         {/* Content — overlays the left half */}
-        <div className="mx-auto w-full max-w-7xl px-6 py-14 lg:px-10 lg:py-16">
+        <div className="mx-auto w-full max-w-7xl px-6 py-20 lg:px-10 lg:py-28">
           <div className="max-w-xl">
             {/* "WHAT IS" smaller, "GREEN HYDROGEN?" big — matches reference hierarchy */}
             <h2 className="font-display leading-none tracking-tight">
@@ -140,11 +140,11 @@ export function HomeWhatIsGreenH2() {
           {/* Title with bright-green decorative bars on left and right */}
           <div className="flex flex-col items-center">
             <div className="flex w-full max-w-3xl items-center justify-center gap-4">
-              <span aria-hidden className="h-0.5 flex-1 bg-[#76b34f]" />
-              <h3 className="font-display text-[clamp(2rem,4vw,3.2rem)] font-extrabold uppercase tracking-tight text-white whitespace-nowrap">
+              <span aria-hidden className="hidden h-0.5 flex-1 bg-[#76b34f] sm:block" />
+              <h3 className="font-display text-center text-[clamp(1.6rem,4vw,3.2rem)] font-extrabold uppercase tracking-tight text-white">
                 Current Challenges
               </h3>
-              <span aria-hidden className="h-0.5 flex-1 bg-[#76b34f]" />
+              <span aria-hidden className="hidden h-0.5 flex-1 bg-[#76b34f] sm:block" />
             </div>
             <p className="mt-3 max-w-2xl text-center text-[15px] text-white/85">
               Despite its potential, Green Hydrogen adoption faces key challenges
@@ -152,12 +152,14 @@ export function HomeWhatIsGreenH2() {
             </p>
           </div>
 
-          {/* 3 horizontal challenge cards */}
-          <ul className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+          {/* 3 challenge cards — swipeable carousel on mobile, 3-up grid on desktop */}
+          {/* pt-8 on mobile gives the floating badges room — the scroll
+              container clips vertical overflow, which would otherwise crop them. */}
+          <ul className="no-scrollbar mt-4 -mx-6 flex snap-x snap-mandatory gap-6 overflow-x-auto pt-8 pb-3 [&>li:first-child]:ml-6 [&>li:first-child]:scroll-ml-6 [&>li:last-child]:mr-6 md:mx-0 md:mt-12 md:grid md:grid-cols-3 md:overflow-visible md:pt-0 md:pb-0 md:[&>li:first-child]:ml-0 md:[&>li:last-child]:mr-0">
             {CHALLENGES.map((c) => (
               <li
                 key={c.title}
-                className="relative rounded-2xl bg-white/95 text-ink shadow-[0_20px_60px_-30px_rgba(0,0,0,0.6)]"
+                className="relative shrink-0 basis-[85%] snap-start rounded-2xl bg-white/95 text-ink shadow-[0_20px_60px_-30px_rgba(0,0,0,0.6)] sm:basis-[60%] md:basis-auto"
               >
                 {/* Floating icon — top, sitting over the boundary between
                     image and text. Half-overlaps the card top edge. */}
@@ -167,7 +169,7 @@ export function HomeWhatIsGreenH2() {
                   {c.badge}
                 </span>
 
-                <div className="grid grid-cols-[1fr_1.4fr] overflow-hidden rounded-2xl">
+                <div className="grid h-full grid-cols-[1fr_1.4fr] overflow-hidden rounded-2xl">
                   {/* Image — left column, full card height */}
                   <div className="relative">
                     <PhotoSlot

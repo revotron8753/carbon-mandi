@@ -10,7 +10,28 @@
       "Bash(node scripts/nav.mjs)",
       "Bash(curl -s -o /dev/null -w \"blogs: %{http_code}\\\\n\" http://localhost:3000/blogs/blog)",
       "Bash(node -e \"const b=require\\('./src/data/blogs.json'\\); console.log\\('count:',b.length\\); console.log\\('keys:',Object.keys\\(b[0]\\)\\); console.log\\('sample handle:',b[0].handle\\); console.log\\('sample seoTitle:',b[0].seoTitle\\); console.log\\('blogId:',b[0].blogId\\);\")",
-      "Bash(curl -s http://localhost:3000/llms.txt)"
+      "Bash(curl -s http://localhost:3000/llms.txt)",
+      "PowerShell(Add-Type -AssemblyName System.Drawing; $img = [System.Drawing.Image]::FromFile\\(\"C:\\\\Users\\\\anshu\\\\carbon-mandi\\\\public\\\\images\\\\indian-flag.png\"\\); \"$\\($img.Width\\)x$\\($img.Height\\)\"; $img.Dispose\\(\\))",
+      "Bash(npx eslint *)",
+      "Bash(echo \"dev started, pid $!\")",
+      "Bash(node scripts/_verify-shot.mjs)",
+      "Bash(node scripts/_verify-flag.mjs)",
+      "Bash(kill 3471)",
+      "Bash(git checkout *)",
+      "Bash(cat)",
+      "Bash(node -e \"console.log\\('noop'\\)\")",
+      "Bash(rm -f scripts/_verify-shot.mjs scripts/c-start.png scripts/c-mid.png scripts/c-end.png scripts/b-start.png scripts/b-mid.png scripts/b-end.png /tmp/vshot.txt *)",
+      "Bash(mv \"ChatGPT Image Jun 1, 2026, 03_10_53 PM.png\" \"paddy-straw.png\")",
+      "Bash(mv \"ChatGPT Image Jun 1, 2026, 03_11_28 PM.png\" \"hemp-stalks.png\")",
+      "Bash(mv \"ChatGPT Image Jun 1, 2026, 03_11_43 PM.png\" \"napier-grass.png\")",
+      "Bash(mv \"ChatGPT Image Jun 1, 2026, 03_11_06 PM.png\" \"napier-grass-alt.png\")",
+      "Bash(mv \"ChatGPT Image Jun 1, 2026, 03_12_25 PM.png\" \"wheat-straw.png\")",
+      "Bash(mv \"ChatGPT Image Jun 1, 2026, 04_01_54 PM.png\" \"hero.png\")",
+      "Bash(mv \"ChatGPT Image Jun 1, 2026, 04_02_55 PM.png\" \"plant-in-hand.png\")",
+      "Bash(node scripts/_verify-shot.mjs before)"
+    ],
+    "additionalDirectories": [
+      "\\tmp"
     ]
   }
 }

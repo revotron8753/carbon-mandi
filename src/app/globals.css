@@ -68,3 +68,11 @@ body {
 .hairline {
   border-color: var(--color-line);
 }
+
+/* Hide the scrollbar on swipeable mobile carousels (track still scrolls) */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
