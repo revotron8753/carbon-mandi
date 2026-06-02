@@ -154,7 +154,7 @@ export function HomeHempNapier() {
                     High Cellulose Content = Higher Energy Potential
                   </p>
                 </div>
-                <div className="grid grid-cols-2 gap-px bg-line">
+                <div className="grid grid-cols-1 gap-px bg-line sm:grid-cols-2">
                   <CelluloseTile
                     name="HEMP"
                     pct="55–60%"
