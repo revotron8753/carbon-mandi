@@ -12,6 +12,18 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "cdn.sanity.io" },
     ],
   },
+  // SEO: preserve rankings from the old Shopify URLs by permanently (308)
+  // redirecting them to their new homes. 308 is cached by search engines and
+  // passes link equity like a 301.
+  async redirects() {
+    return [
+      {
+        source: "/pages/green-hydrogen-pilot",
+        destination: "/",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
