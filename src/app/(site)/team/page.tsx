@@ -5,7 +5,7 @@ import { ArrowRight, Leaf } from "lucide-react";
 
 import { PhotoSlot } from "@/components/ui/photo-slot";
 import { ContactCtaButton } from "@/components/custom/contact/ContactCtaButton";
-import { sanityFetch, urlFor, teamQuery, partnersQuery } from "@/lib/sanity";
+import { sanityFetch, urlFor, teamQuery } from "@/lib/sanity";
 
 export const metadata: Metadata = {
   title: "Global Team — Carbon Mandi",
@@ -32,7 +32,7 @@ const FLAGS: Record<string, string> = {
 
 /* ── Sanity result shapes ─────────────────────────────────────────────── */
 
-// `photo`/`logo` are raw Sanity image objects; `urlFor` accepts them directly.
+// `photo` is a raw Sanity image object; `urlFor` accepts it directly.
 type SanityImage = { asset?: { _ref?: string } } | null;
 
 type Member = {
@@ -47,19 +47,35 @@ type Member = {
 };
 
 type Partner = {
-  _id: string;
   name: string;
+  /** Logo asset under /public. */
+  src: string;
+  /** Optional outbound link. */
   url?: string;
-  logo?: SanityImage;
 };
+
+/* ── Global Ecosystem partners ────────────────────────────────────────────
+   Logos live in /public/images/partners as self-contained SVGs. Order here is
+   the order they render in the grid. */
+const PARTNERS: Partner[] = [
+  { name: "Grow Billion Trees", src: "/images/partners/2.svg" },
+  { name: "AquaWelder", src: "/images/partners/7.svg" },
+  { name: "HYCELL Engage", src: "/images/partners/8.svg" },
+  { name: "Fuelking", src: "/images/partners/6.svg" },
+  { name: "Q-LUB", src: "/images/partners/5.svg" },
+  { name: "AiG", src: "/images/partners/4.svg" },
+  { name: "zenathom", src: "/images/partners/10.svg" },
+  { name: "Right to Climate", src: "/images/partners/9.svg" },
+  { name: "National Green Hydrogen Mission", src: "/images/partners/11.svg" },
+  { name: "DPIIT — Startup India", src: "/images/partners/12.svg" },
+  { name: "Carbon Mandi partner", src: "/images/partners/1.svg" },
+  { name: "Carbon Mandi partner", src: "/images/partners/3.svg" },
+];
 
 /* ── Page ─────────────────────────────────────────────────────────────── */
 
 export default async function TeamPage() {
-  const [members, partners] = await Promise.all([
-    sanityFetch<Member[]>(teamQuery),
-    sanityFetch<Partner[]>(partnersQuery),
-  ]);
+  const members = await sanityFetch<Member[]>(teamQuery);
 
   const global = members.filter((m) => m.group === GLOBAL_GROUP);
   const exec = members.filter((m) => m.group === EXEC_GROUP);
@@ -92,13 +108,33 @@ export default async function TeamPage() {
               </p>
             </div>
 
-            {/* Right — partner logo grid. A gap-px grid over a line-colored
-                background renders clean hairline dividers at any column count. */}
-            <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-line ring-1 ring-line sm:grid-cols-3">
-              {partners.map((p) => (
+            {/* Right — partner logos.
+                · Mobile: an auto-scrolling marquee (single row, loops on its own).
+                · sm+: a static grid. A gap-px grid over a line-colored
+                  background renders clean hairline dividers at any column count. */}
+
+            {/* Mobile marquee. The track holds two copies of the set; the
+                animation shifts it by -50% for a seamless loop. */}
+            <div className="overflow-hidden sm:hidden">
+              <ul className="flex w-max animate-marquee items-center">
+                {[...PARTNERS, ...PARTNERS].map((p, i) => (
+                  <li
+                    key={i}
+                    aria-hidden={i >= PARTNERS.length}
+                    className="flex w-36 shrink-0 items-center justify-center px-6 py-2"
+                  >
+                    <PartnerLogo partner={p} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* sm+ grid */}
+            <ul className="hidden gap-px overflow-hidden rounded-2xl bg-line ring-1 ring-line sm:grid sm:grid-cols-3">
+              {PARTNERS.map((p) => (
                 <li
-                  key={p._id}
-                  className="flex items-center justify-center bg-paper p-5 sm:p-6"
+                  key={p.src}
+                  className="flex min-h-36 items-center justify-center bg-paper p-4"
                 >
                   <PartnerLogo partner={p} />
                 </li>
@@ -371,20 +407,18 @@ function MemberCard({ member }: { member: Member }) {
   );
 }
 
-/** Partner logo cell — Sanity logo if uploaded, else the partner name. */
+/** Partner logo cell. Logos are local SVGs (each wraps an embedded bitmap), so
+    a plain <img> is used — next/image won't optimize SVG without
+    `dangerouslyAllowSVG`, and there's no benefit to enabling it for these. */
 function PartnerLogo({ partner }: { partner: Partner }) {
-  const inner = partner.logo?.asset ? (
-    <Image
-      src={urlFor(partner.logo).width(300).fit("max").auto("format").url()}
+  const inner = (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={partner.src}
       alt={partner.name}
-      width={150}
-      height={50}
-      className="h-auto max-h-12 w-auto object-contain"
+      loading="lazy"
+      className="max-h-20 w-auto max-w-full object-contain sm:max-h-24"
     />
-  ) : (
-    <span className="text-center text-[12.5px] font-semibold leading-tight text-ink-soft">
-      {partner.name}
-    </span>
   );
 
   return partner.url ? (
