@@ -9,6 +9,7 @@ import { siteSettings } from "./siteSettings";
 import { article } from "./article";
 import { project } from "./project";
 import { teamMember } from "./teamMember";
+import { partner } from "./partner";
 import { product } from "./product";
 import { csrPage } from "./csrPage";
 
@@ -22,6 +23,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     article,
     project,
     teamMember,
+    partner,
     product,
     csrPage,
   ],

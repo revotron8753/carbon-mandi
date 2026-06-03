@@ -21,7 +21,7 @@ export interface NavLink {
 /** Primary navigation. ("मंडी" = "Mandi" in Hindi.) */
 export const NAV_LINKS: NavLink[] = [
   { label: "National Projects", href: "#", comingSoon: true },
-  { label: "Team", href: "#", comingSoon: true },
+  { label: "Team", href: "/team" },
   { label: "मंडी", href: "/mandi" },
   { label: "Blogs", href: "/blogs/blog" },
 ];

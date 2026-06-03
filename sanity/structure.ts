@@ -1,5 +1,5 @@
 import type { StructureResolver } from "sanity/structure";
-import { Cog, Leaf, Newspaper, Factory, User, Package } from "lucide-react";
+import { Cog, Leaf, Newspaper, Factory, User, Package, Handshake } from "lucide-react";
 
 // Singleton documents (only one instance each).
 const SINGLETONS = ["siteSettings", "csrPage"];
@@ -19,6 +19,7 @@ export const structure: StructureResolver = (S) =>
       S.divider(),
       S.documentTypeListItem("project").title("Projects").icon(Factory),
       S.documentTypeListItem("teamMember").title("Team").icon(User),
+      S.documentTypeListItem("partner").title("Partners").icon(Handshake),
       S.documentTypeListItem("product").title("Products (Mandi)").icon(Package),
       S.documentTypeListItem("article").title("Articles").icon(Newspaper),
       S.divider(),
@@ -30,6 +31,7 @@ export const structure: StructureResolver = (S) =>
             "csrPage",
             "project",
             "teamMember",
+            "partner",
             "product",
             "article",
           ].includes(item.getId() ?? "")

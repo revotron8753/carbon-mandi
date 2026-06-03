@@ -8,10 +8,12 @@ import { Menu, X } from "lucide-react";
 import { NAV_LINKS } from "@/lib/constants";
 import { MandiLogo } from "./home/MandiLogo";
 import { NavMenu } from "./NavMenu";
+import { useContactModal } from "./contact/ContactModalProvider";
 
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const { open: openContact } = useContactModal();
 
   // Homepage absorbs the logo and Made-in-India badge inside the hero, so
   // the global navbar is hidden there. Other pages keep it.
@@ -27,12 +29,13 @@ export function Navbar() {
         <NavMenu className="hidden lg:flex" />
 
         <div className="hidden lg:block">
-          <Link
-            href="/contact"
+          <button
+            type="button"
+            onClick={() => openContact("Join the Mission")}
             className="rounded-md bg-mission px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-mission-dark"
           >
             Join the Mission
-          </Link>
+          </button>
         </div>
 
         <button
@@ -71,13 +74,16 @@ export function Navbar() {
             )
           )}
           <li className="px-2 pt-3">
-            <Link
-              href="/contact"
-              onClick={() => setOpen(false)}
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                openContact("Join the Mission");
+              }}
               className="inline-flex w-full justify-center rounded-md bg-mission px-5 py-2.5 text-sm font-semibold text-white"
             >
               Join the Mission
-            </Link>
+            </button>
           </li>
         </ul>
       )}

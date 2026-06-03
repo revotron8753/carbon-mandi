@@ -28,14 +28,21 @@ export const projectSlugsQuery = defineQuery(`
 // ── Team ─────────────────────────────────────────────────────────────────────
 export const teamQuery = defineQuery(`
   *[_type == "teamMember"] | order(order asc){
-    _id, name, role, region, bio, photo, socials
+    _id, name, role, group, country, bio, linkedin, photo
+  }
+`);
+
+// ── Partners (Global Ecosystem logos) ─────────────────────────────────────────
+export const partnersQuery = defineQuery(`
+  *[_type == "partner"] | order(order asc){
+    _id, name, url, logo
   }
 `);
 
 // ── Products (Mandi) ─────────────────────────────────────────────────────────
 export const productsQuery = defineQuery(`
   *[_type == "product"] | order(order asc){
-    _id, name, "slug": slug.current, category, shortDescription, image, indiaMartUrl
+    _id, name, "slug": slug.current, category, icon, shortDescription, image, indiaMartUrl
   }
 `);
 

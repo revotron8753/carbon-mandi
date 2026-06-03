@@ -358,6 +358,143 @@ export const IMAGES = {
     filename: "mandi/plant-in-hand.png · wide",
     alt: "Two cupped hands holding fresh soil with a young green plant sprouting — growing India's green future together.",
   },
+
+  // ── Team page: Global Ecosystem partner logos ──────────────────────────
+  // Logos sit on white — recommend transparent PNG/SVG, roughly 3:1 landscape.
+  partnerBCG: {
+    src: "",
+    filename: "team/partners/bcg.png · ~3:1 · transparent",
+    alt: "Boston Consulting Group (BCG) logo.",
+  },
+  partnerPraj: {
+    src: "",
+    filename: "team/partners/praj.png · ~3:1 · transparent",
+    alt: "Praj Industries logo.",
+  },
+  partnerReNew: {
+    src: "",
+    filename: "team/partners/renew-power.png · ~3:1 · transparent",
+    alt: "ReNew Power logo.",
+  },
+  partnerIITRopar: {
+    src: "",
+    filename: "team/partners/iit-ropar.png · ~3:1 · transparent",
+    alt: "IIT Ropar logo.",
+  },
+  partnerTERI: {
+    src: "",
+    filename: "team/partners/teri.png · ~3:1 · transparent",
+    alt: "The Energy and Resources Institute (TERI) logo.",
+  },
+  partnerDBFZ: {
+    src: "",
+    filename: "team/partners/dbfz.png · ~3:1 · transparent",
+    alt: "DBFZ Deutsches Biomasseforschungszentrum logo.",
+  },
+  partnerCirculor: {
+    src: "",
+    filename: "team/partners/circulor.png · ~3:1 · transparent",
+    alt: "Circulor logo.",
+  },
+  partnerNREL: {
+    src: "",
+    filename: "team/partners/nrel.png · ~3:1 · transparent",
+    alt: "National Renewable Energy Laboratory (NREL) logo.",
+  },
+  partnerEarthood: {
+    src: "",
+    filename: "team/partners/earthood.png · ~3:1 · transparent",
+    alt: "Earthood logo.",
+  },
+  partnerEESL: {
+    src: "",
+    filename: "team/partners/eesl.png · ~3:1 · transparent",
+    alt: "Energy Efficiency Services Limited (EESL) logo.",
+  },
+  partnerGIZ: {
+    src: "",
+    filename: "team/partners/giz.png · ~3:1 · transparent",
+    alt: "Deutsche Gesellschaft für Internationale Zusammenarbeit (GIZ) logo.",
+  },
+  partnerShellFoundation: {
+    src: "",
+    filename: "team/partners/shell-foundation.png · ~3:1 · transparent",
+    alt: "Shell Foundation logo.",
+  },
+  partnerFAO: {
+    src: "",
+    filename: "team/partners/fao.png · ~3:1 · transparent",
+    alt: "Food and Agriculture Organization of the United Nations (FAO) logo.",
+  },
+  partnerWorldBank: {
+    src: "",
+    filename: "team/partners/world-bank.png · ~3:1 · transparent",
+    alt: "The World Bank logo.",
+  },
+  partnerIFC: {
+    src: "",
+    filename: "team/partners/ifc.png · ~3:1 · transparent",
+    alt: "International Finance Corporation (IFC) logo.",
+  },
+
+  // ── Team page: Global Climate Experts portraits (≈4:5) ─────────────────
+  globalForstner: {
+    src: "",
+    filename: "team/global/christian-forstner.jpg · 4:5",
+    alt: "Portrait of Dr. Christian Forstner, Co-Founder of Ubuntu Hemp.",
+  },
+  globalBezuidenhout: {
+    src: "",
+    filename: "team/global/freddy-bezuidenhout.jpg · 4:5",
+    alt: "Portrait of Freddy Bezuidenhout, Co-Founder of Q-Lub.",
+  },
+  globalLoschmann: {
+    src: "",
+    filename: "team/global/frank-loschmann.jpg · 4:5",
+    alt: "Portrait of Dr. Frank Löschmann, Founder of HyCell Energy and former CEO of Volkswagen.",
+  },
+  globalLambert: {
+    src: "",
+    filename: "team/global/chris-lambert.jpg · 4:5",
+    alt: "Portrait of Chris Lambert, Executive Chairman of Aether Innovations.",
+  },
+  globalFritschen: {
+    src: "",
+    filename: "team/global/dan-fritschen.jpg · 4:5",
+    alt: "Portrait of Dan Fritschen, Senior Researcher at Waste Free '23.",
+  },
+
+  // ── Team page: Ground Expert Team portraits (≈4:5) ─────────────────────
+  groundMohanVerma: {
+    src: "",
+    filename: "team/ground/mohan-verma.jpg · 4:5",
+    alt: "Portrait of Mohan Verma, Co-Founder.",
+  },
+  groundSarahRawat: {
+    src: "",
+    filename: "team/ground/sarah-rawat.jpg · 4:5",
+    alt: "Portrait of Sarah Rawat, Co-Founder & COO at Carbon Mandi.",
+  },
+  groundAnuragGupta: {
+    src: "",
+    filename: "team/ground/anurag-gupta.jpg · 4:5",
+    alt: "Portrait of Anurag Gupta, Co-Founder at Carbon Mandi.",
+  },
+  groundPriyamKapoor: {
+    src: "",
+    filename: "team/ground/priyam-kapoor.jpg · 4:5",
+    alt: "Portrait of Priyam Kapoor, Founder & Chief Advisor, BNI Delhi SDG Council.",
+  },
+  groundNitinsinhRaulji: {
+    src: "",
+    filename: "team/ground/nitinsinh-raulji.jpg · 4:5",
+    alt: "Portrait of Nitinsinh Raulji, Founder of Aquawelder India.",
+  },
+  groundChetanShukla: {
+    src: "",
+    filename: "team/ground/chetan-shukla.jpg · 4:5",
+    alt: "Portrait of Chetan Shukla, Clean Technology Industrial Expert.",
+  },
 } as const;
 
 export type ImageKey = keyof typeof IMAGES;

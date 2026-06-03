@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Flame, Leaf, Phone } from "lucide-react";
 
 import { PhotoSlot } from "@/components/ui/photo-slot";
-import type { ImageKey } from "@/lib/images";
+import { ContactCtaButton } from "@/components/custom/contact/ContactCtaButton";
+import { cn } from "@/lib/utils";
+import { sanityFetch, urlFor, productsQuery } from "@/lib/sanity";
 
 export const metadata: Metadata = {
   title: "Mandi — India's Biomass Aggregation Platform",
@@ -11,98 +13,27 @@ export const metadata: Metadata = {
     "Carbon Mandi connects 15,000+ farmers across India — aggregating biomass feedstock and turning it into green hydrogen, CBG, carbon credits and sustainable partner products.",
 };
 
-/* ── Section data ─────────────────────────────────────────────────────── */
+type SanityImage = { asset?: { _ref?: string } } | null;
 
-const BIOMASS: { title: string; slot: ImageKey; body: string }[] = [
-  {
-    title: "Napier Grass",
-    slot: "mandiBiomassNapier",
-    body: "High-yield energy crop ideal for green fuel production.",
-  },
-  {
-    title: "Hemp Stalks",
-    slot: "mandiBiomassHemp",
-    body: "Strong, sustainable biomass ideal for industrial & energy use.",
-  },
-  {
-    title: "Paddy Straw",
-    slot: "mandiBiomassPaddy",
-    body: "Abundant agri-residue perfect for clean energy conversion.",
-  },
-  {
-    title: "Wheat Straw",
-    slot: "mandiBiomassWheat",
-    body: "Widely available biomass with high energy potential.",
-  },
-  {
-    title: "Agri Residue",
-    slot: "mandiBiomassAgri",
-    body: "Mixed agri-residue sourced responsibly for a greener planet.",
-  },
-];
-
-const PRODUCTS: {
-  title: string;
-  slot: ImageKey;
-  body: string;
-  icon: React.ReactNode;
-}[] = [
-  {
-    title: "Green Hydrogen",
-    slot: "mandiProductHydrogen",
-    body: "Clean fuel for industry, mobility and a greener tomorrow.",
-    icon: <H2Glyph />,
-  },
-  {
-    title: "CBG",
-    slot: "mandiProductCBG",
-    body: "Renewable gas for a sustainable and self-reliant India.",
-    icon: <Flame size={18} strokeWidth={2} />,
-  },
-  {
-    title: "Carbon Credits",
-    slot: "mandiProductCarbonCredits",
-    body: "Enabling climate action and creating value for a better planet.",
-    icon: <Leaf size={18} strokeWidth={2} />,
-  },
-];
-
-const PARTNERS: { title: string; slot: ImageKey; body: string }[] = [
-  {
-    title: "Organic Potting Mix",
-    slot: "mandiPartnerPottingMix",
-    body: "Nutrient-rich soil mix for healthy plant growth.",
-  },
-  {
-    title: "Plant Based Lubricants",
-    slot: "mandiPartnerLubricants",
-    body: "High performance, eco-friendly lubricants for all applications.",
-  },
-  {
-    title: "Jute Products",
-    slot: "mandiPartnerJute",
-    body: "Sustainable, biodegradable and responsibly crafted.",
-  },
-  {
-    title: "Hemp Fabric",
-    slot: "mandiPartnerHempFabric",
-    body: "Strong, durable and naturally sustainable.",
-  },
-  {
-    title: "Natural Cleaners",
-    slot: "mandiPartnerCleaners",
-    body: "Tough on dirt, gentle on you and the planet.",
-  },
-  {
-    title: "Coir Products",
-    slot: "mandiPartnerCoir",
-    body: "Eco-friendly solutions for a greener tomorrow.",
-  },
-];
+type Product = {
+  _id: string;
+  name: string;
+  category?: string;
+  icon?: string;
+  shortDescription?: string;
+  image?: SanityImage;
+  indiaMartUrl?: string;
+};
 
 /* ── Page ─────────────────────────────────────────────────────────────── */
 
-export default function MandiPage() {
+export default async function MandiPage() {
+  const products = await sanityFetch<Product[]>(productsQuery);
+
+  const biomass = products.filter((p) => p.category === "Biomass");
+  const finals = products.filter((p) => p.category === "Final Product");
+  const partners = products.filter((p) => p.category === "Partner Product");
+
   return (
     <>
       {/* ── HERO ──────────────────────────────────────────────────────── */}
@@ -159,22 +90,17 @@ export default function MandiPage() {
           <SectionTitle>Explore Biomass</SectionTitle>
 
           <ul className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-5">
-            {BIOMASS.map((b) => (
+            {biomass.map((b) => (
               <li
-                key={b.title}
+                key={b._id}
                 className="flex flex-col rounded-2xl bg-white p-3.5 shadow-[0_18px_50px_-32px_rgba(13,92,61,0.45)] ring-1 ring-line"
               >
-                <PhotoSlot
-                  slot={b.slot}
-                  aspectRatio="4/3"
-                  className="rounded-xl"
-                  imgClassName="object-cover"
-                />
-                <h3 className="mt-4 text-[16px] font-bold text-ink">{b.title}</h3>
+                <ProductImage product={b} ratio="4/3" className="rounded-xl" />
+                <h3 className="mt-4 text-[16px] font-bold text-ink">{b.name}</h3>
                 <p className="mt-2 flex-1 text-[13px] leading-relaxed text-ink-soft">
-                  {b.body}
+                  {b.shortDescription}
                 </p>
-                <EnquireButton />
+                <EnquireButton source={`Enquiry — ${b.name}`} />
               </li>
             ))}
           </ul>
@@ -187,28 +113,27 @@ export default function MandiPage() {
           <SectionTitle>Our Final Products</SectionTitle>
 
           <ul className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
-            {PRODUCTS.map((p) => (
+            {finals.map((p) => (
               <li
-                key={p.title}
+                key={p._id}
                 className="flex flex-col overflow-hidden rounded-2xl bg-white shadow-[0_18px_50px_-32px_rgba(13,92,61,0.45)] ring-1 ring-line"
               >
-                <PhotoSlot
-                  slot={p.slot}
-                  aspectRatio="16/9"
-                  className="rounded-none ring-0"
-                  imgClassName="object-cover"
+                <ProductImage
+                  product={p}
+                  ratio="16/9"
+                  className="rounded-none"
                 />
                 <div className="flex flex-1 flex-col p-5">
                   <div className="flex items-center gap-3">
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-mission text-white">
-                      {p.icon}
+                      <ProductIcon icon={p.icon} />
                     </span>
-                    <h3 className="text-[18px] font-bold text-ink">{p.title}</h3>
+                    <h3 className="text-[18px] font-bold text-ink">{p.name}</h3>
                   </div>
                   <p className="mt-3 flex-1 text-[13.5px] leading-relaxed text-ink-soft">
-                    {p.body}
+                    {p.shortDescription}
                   </p>
-                  <EnquireButton />
+                  <EnquireButton source={`Enquiry — ${p.name}`} />
                 </div>
               </li>
             ))}
@@ -222,24 +147,19 @@ export default function MandiPage() {
           <SectionTitle>Sustainable Products From Our Partners</SectionTitle>
 
           <ul className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-            {PARTNERS.map((p) => (
+            {partners.map((p) => (
               <li
-                key={p.title}
+                key={p._id}
                 className="flex flex-col rounded-2xl bg-white p-3 shadow-[0_18px_50px_-32px_rgba(13,92,61,0.45)] ring-1 ring-line"
               >
-                <PhotoSlot
-                  slot={p.slot}
-                  aspectRatio="1/1"
-                  className="rounded-xl"
-                  imgClassName="object-cover"
-                />
+                <ProductImage product={p} ratio="1/1" className="rounded-xl" />
                 <h3 className="mt-3 text-[13.5px] font-bold leading-tight text-ink">
-                  {p.title}
+                  {p.name}
                 </h3>
                 <p className="mt-1.5 flex-1 text-[11.5px] leading-snug text-ink-soft">
-                  {p.body}
+                  {p.shortDescription}
                 </p>
-                <EnquireButton compact />
+                <EnquireButton source={`Enquiry — ${p.name}`} compact />
               </li>
             ))}
           </ul>
@@ -289,13 +209,13 @@ export default function MandiPage() {
                 Let&rsquo;s build a self-reliant, sustainable and prosperous
                 India together.
               </p>
-              <Link
-                href="/contact"
+              <ContactCtaButton
+                source="Partner With Us"
                 className="mt-5 inline-flex items-center justify-center gap-2 rounded-md bg-white px-6 py-3 text-[13.5px] font-bold text-mission-deep transition-colors hover:bg-white/90"
               >
                 Partner With Us
                 <ArrowRight size={16} strokeWidth={2.2} />
-              </Link>
+              </ContactCtaButton>
             </div>
           </div>
         </div>
@@ -305,6 +225,50 @@ export default function MandiPage() {
 }
 
 /* ── Local components ─────────────────────────────────────────────────── */
+
+/** Product image — Sanity image if uploaded, else a labeled placeholder. */
+function ProductImage({
+  product,
+  ratio,
+  className,
+}: {
+  product: Product;
+  ratio: string;
+  className?: string;
+}) {
+  return (
+    <div
+      style={{ aspectRatio: ratio }}
+      className={cn(
+        "relative w-full overflow-hidden bg-card ring-1 ring-line",
+        className
+      )}
+    >
+      {product.image?.asset ? (
+        <Image
+          src={urlFor(product.image).width(640).fit("max").auto("format").url()}
+          alt={product.name}
+          fill
+          sizes="(max-width: 768px) 50vw, 20vw"
+          className="object-cover"
+        />
+      ) : (
+        <div className="flex h-full w-full items-center justify-center p-3 text-center">
+          <span className="text-[11px] font-medium text-ink-muted">
+            {product.name}
+          </span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/** Maps the CMS icon value to a glyph for "Final Product" cards. */
+function ProductIcon({ icon }: { icon?: string }) {
+  if (icon === "h2") return <H2Glyph />;
+  if (icon === "flame") return <Flame size={18} strokeWidth={2} />;
+  return <Leaf size={18} strokeWidth={2} />;
+}
 
 /** Centered section heading: ── 🌿 TITLE ── */
 function SectionTitle({ children }: { children: React.ReactNode }) {
@@ -322,18 +286,24 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
   );
 }
 
-/** Outlined "Call to Enquire Now" button used on every card. */
-function EnquireButton({ compact = false }: { compact?: boolean }) {
+/** Outlined "Call to Enquire Now" button — opens the contact modal. */
+function EnquireButton({
+  source,
+  compact = false,
+}: {
+  source?: string;
+  compact?: boolean;
+}) {
   return (
-    <Link
-      href="/contact"
+    <ContactCtaButton
+      source={source}
       className={`mt-4 inline-flex w-full items-center justify-center gap-2 rounded-md border border-line font-semibold text-ink transition-colors hover:border-mission hover:text-mission ${
         compact ? "px-3 py-2 text-[11px]" : "px-4 py-2.5 text-[12.5px]"
       }`}
     >
       <Phone size={compact ? 12 : 14} strokeWidth={2} />
       Call to Enquire Now
-    </Link>
+    </ContactCtaButton>
   );
 }
 
