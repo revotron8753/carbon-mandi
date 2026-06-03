@@ -8,7 +8,7 @@ export const SITE = {
   // Canonical host — matches Shopify's existing www subdomain so URLs are byte-identical.
   url: "https://www.carbonmandi.com",
   email: "hello@carbonmandi.com",
-  phone: "+91 98765 43210",
+  phone: "+91-9140897297",
 } as const;
 
 export interface NavLink {

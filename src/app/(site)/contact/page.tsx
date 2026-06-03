@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Mail, MapPin, Phone } from "lucide-react";
 
 import { ContactForm } from "@/components/custom/contact/ContactForm";
+import { SITE } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Contact Us — Carbon Mandi",
@@ -34,7 +35,9 @@ export default function ContactPage() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={18} className="text-mission" strokeWidth={1.8} />
-                +91 98765 43210
+                <a href={`tel:${SITE.phone.replace(/[^+\d]/g, "")}`} className="hover:text-mission">
+                  {SITE.phone}
+                </a>
               </li>
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="mt-0.5 text-mission" strokeWidth={1.8} />
