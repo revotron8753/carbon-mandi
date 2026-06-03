@@ -11,10 +11,12 @@ export { urlFor };
 export * from "../../sanity/lib/queries";
 
 /**
- * Server-side read client. The `production` dataset is private, so reads use
- * SANITY_API_READ_TOKEN (server-only env var — never shipped to the browser).
- * `perspective: "published"` ensures the live site shows published content
- * only, never drafts. CDN is off because token reads must hit the live API.
+ * Server-side read client. The `production` dataset is public-read, so the
+ * token is optional — when present (SANITY_API_READ_TOKEN, a server-only env
+ * var never shipped to the browser) it's used; when absent, public reads still
+ * work, so a frontend-only deploy needs no secret. `perspective: "published"`
+ * ensures the live site shows published content only, never drafts. CDN is off
+ * so reads always hit fresh published data.
  */
 export const client = createClient({
   projectId,
