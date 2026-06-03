@@ -11,19 +11,28 @@ export { urlFor };
 export * from "../../sanity/lib/queries";
 
 /**
- * Server-side read client. The `production` dataset is public-read, so the
- * token is optional — when present (SANITY_API_READ_TOKEN, a server-only env
- * var never shipped to the browser) it's used; when absent, public reads still
- * work, so a frontend-only deploy needs no secret. `perspective: "published"`
- * ensures the live site shows published content only, never drafts. CDN is off
- * so reads always hit fresh published data.
+ * Read-only Sanity API token (server-only — never reaches the browser, since
+ * this client is only imported by server components). The dataset doesn't
+ * return the full published content set anonymously, so reads need this token;
+ * it's hardcoded as a fallback so frontend-only deploys (which can't set env
+ * vars) still show all content. SANITY_API_READ_TOKEN overrides it when set.
+ * This is a *read* token — rotate it at sanity.io/manage if the repo is public.
+ */
+const READ_TOKEN =
+  process.env.SANITY_API_READ_TOKEN ||
+  "skzF8knkUS61i8fZkHqlvQZTggXTEmB2QRh206g1KJR428sWPfj94IaXbPugkEjGsDh0KxMXb3tUz4ax4r3qleYQceaChhqLkywLdeAyIEf1m4V34EB1E67Ia0iEqDmOA4PVJusbrkF7uUPggunNcr5uPpwXZioeo8dKQSRmcQQmJBCRM4tR";
+
+/**
+ * Server-side read client. `perspective: "published"` ensures the live site
+ * shows published content only, never drafts. CDN is off so reads always hit
+ * fresh published data.
  */
 export const client = createClient({
   projectId,
   dataset,
   apiVersion,
   useCdn: false,
-  token: process.env.SANITY_API_READ_TOKEN,
+  token: READ_TOKEN,
   perspective: "published",
 });
 
