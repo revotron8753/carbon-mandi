@@ -495,6 +495,40 @@ export const IMAGES = {
     filename: "team/ground/chetan-shukla.jpg · 4:5",
     alt: "Portrait of Chetan Shukla, Clean Technology Industrial Expert.",
   },
+
+  // ── National Projects page ─────────────────────────────────────────────
+  // Hero — wide banner (India Gate at sunrise with the tricolour).
+  projectsHero: {
+    src: "/images/national-projects/hero.png",
+    filename: "national-projects/hero.png · wide ~16:7 · India Gate + Rashtrapati Bhavan at sunrise with tricolour",
+    alt: "India Gate and Rashtrapati Bhavan at sunrise with the Indian tricolour flying — national initiatives for a self-reliant India.",
+  },
+  // Project row photos (≈4:3 landscape).
+  projectGreenH2: {
+    src: "/images/national-projects/carbon-mandi.png",
+    filename: "national-projects/carbon-mandi.png · 4:3",
+    alt: "Green hydrogen production plant with a large H₂ storage tank and processing units set in green surroundings.",
+  },
+  projectPlasmaTextile: {
+    src: "/images/national-projects/plasma-textile.png",
+    filename: "national-projects/plasma-textile.png · 4:3",
+    alt: "Zero-water plasma textile processing line inside a modern factory, with an operator at a control panel.",
+  },
+  projectRightToClimate: {
+    src: "/images/national-projects/right-to-climate.png",
+    filename: "national-projects/right-to-climate.png · 4:3",
+    alt: "Right to Climate field educator demonstrating green hydrogen models to schoolchildren outdoors near wind turbines.",
+  },
+  projectQLub: {
+    src: "/images/national-projects/qlub-lubricants.png",
+    filename: "national-projects/qlub-lubricants.png · 4:3",
+    alt: "Range of Q-LUB plant-based lubricant canisters and bottles arranged beside fresh green leaves.",
+  },
+  projectAquaWelder: {
+    src: "/images/national-projects/aquawelder.png",
+    filename: "national-projects/aquawelder.png · 4:3",
+    alt: "AquaWelder on-demand hydrogen generation and storage container unit at a steel plant at dusk.",
+  },
 } as const;
 
 export type ImageKey = keyof typeof IMAGES;

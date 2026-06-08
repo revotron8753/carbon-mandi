@@ -20,8 +20,30 @@ export const article = defineType({
       name: "slug",
       title: "Slug",
       type: "slug",
-      options: { source: "title", maxLength: 96 },
-      validation: (rule) => rule.required(),
+      description:
+        'The URL path (e.g. "my-first-post"). Lowercase letters, numbers and hyphens only — no spaces or capitals. Click "Generate" to build it from the title.',
+      options: {
+        source: "title",
+        maxLength: 96,
+        // Always produce a URL-safe slug, even from titles with spaces/caps.
+        slugify: (input) =>
+          input
+            .toLowerCase()
+            .trim()
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-+|-+$/g, "")
+            .slice(0, 96),
+      },
+      // Block publishing a manually-typed bad slug (spaces, capitals, etc.) —
+      // those break the /blogs/blog/<slug> URL.
+      validation: (rule) =>
+        rule.required().custom((value) => {
+          const current = (value as { current?: string } | undefined)?.current;
+          if (!current) return "Slug is required";
+          return /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(current)
+            ? true
+            : "Use lowercase letters, numbers and single hyphens only — no spaces or capitals.";
+        }),
     }),
     defineField({
       name: "excerpt",
