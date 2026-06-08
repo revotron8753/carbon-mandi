@@ -125,37 +125,28 @@ export default function ProjectsPage() {
     <>
       {/* ── HERO ──────────────────────────────────────────────────────── */}
       <section className="relative isolate overflow-hidden bg-paper">
-        {/* Mobile — full-bleed hero image as a background, softened with a white
-            wash so the heading + paragraph stay readable on top. */}
-        <div className="absolute inset-0 -z-10 lg:hidden">
+        {/* Hero photo — full-bleed across the whole hero so the entire scene
+            (India Gate + tricolour) stays in frame; only sky/road crop a little
+            vertically. The heading reads over a white gradient on the left. */}
+        <div className="absolute inset-0 -z-10">
           <PhotoSlot
             slot="projectsHero"
             fill
             priority
             className="rounded-none ring-0"
-            imgClassName="object-cover"
+            imgClassName="object-cover object-center"
           />
-          <div aria-hidden className="absolute inset-0 bg-white/72" />
-        </div>
-
-        {/* Right-half hero image — bleeds to the right viewport edge on desktop,
-            fading into the white panel that holds the heading. */}
-        <div className="absolute inset-y-0 right-0 -z-10 hidden w-[54%] lg:block">
-          <PhotoSlot
-            slot="projectsHero"
-            fill
-            priority
-            className="rounded-none ring-0"
-            imgClassName="object-cover object-left"
-          />
+          {/* Mobile — overall white wash for legibility. */}
+          <div aria-hidden className="absolute inset-0 bg-white/72 lg:hidden" />
+          {/* Desktop — white fades in from the left behind the heading. */}
           <div
             aria-hidden
-            className="absolute inset-0 bg-[linear-gradient(to_right,white_0%,rgba(255,255,255,0.6)_14%,rgba(255,255,255,0)_38%)]"
+            className="absolute inset-0 hidden bg-[linear-gradient(to_right,white_0%,white_20%,rgba(255,255,255,0.55)_42%,rgba(255,255,255,0)_66%)] lg:block"
           />
         </div>
 
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="grid min-h-96 grid-cols-1 items-center gap-8 lg:min-h-[clamp(26rem,42vw,34rem)] lg:grid-cols-2">
+          <div className="grid min-h-96 grid-cols-1 items-center gap-8 lg:min-h-[clamp(20rem,44vw,44rem)] lg:grid-cols-2">
             <div className="py-12 lg:py-20">
               <p className="text-[13px] font-semibold uppercase tracking-[0.2em] text-mission">
                 National Initiatives
