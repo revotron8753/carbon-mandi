@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight, ImageIcon, MapPin } from "lucide-react";
 
 import { PhotoSlot } from "@/components/ui/photo-slot";
+import { ContactCtaButton } from "@/components/custom/contact/ContactCtaButton";
 import { type ImageKey } from "@/lib/images";
 
 export const metadata: Metadata = {
@@ -27,7 +28,8 @@ type Project = {
   description: string;
   location: string;
   ledBy: string;
-  partners: string[];
+  /** Strategic partners. `logo` is a path under /public when supplied. */
+  partners: { name: string; logo?: string }[];
   image: ImageKey;
   href: string;
 };
@@ -43,9 +45,14 @@ const PROJECTS: Project[] = [
       "Developing India's next generation clean fuel from hemp and napier biomass.",
     location: "Punjab, India",
     ledBy: "Carbon Mandi",
-    partners: ["IIT Ropar"],
+    partners: [
+      {
+        name: "IIT Ropar",
+        logo: "/images/national-projects/logos/iit-ropar.svg",
+      },
+    ],
     image: "projectGreenH2",
-    href: "#",
+    href: "/",
   },
   {
     no: "02",
@@ -58,8 +65,8 @@ const PROJECTS: Project[] = [
     location: "Pan India",
     ledBy: "AIG",
     partners: [
-      "Textile Research Association",
-      "Thapar Institute of Engineering & Technology",
+      { name: "Textile Research Association" },
+      { name: "Thapar Institute of Engineering & Technology" },
     ],
     image: "projectPlasmaTextile",
     href: "#",
@@ -74,7 +81,7 @@ const PROJECTS: Project[] = [
       "Driving awareness, policy support and adoption of green hydrogen for a cleaner, equitable future.",
     location: "Pan India",
     ledBy: "Right to Climate",
-    partners: ["Vimla Art Forum", "Indian Bravehearts"],
+    partners: [{ name: "Vimla Art Forum" }, { name: "Indian Bravehearts" }],
     image: "projectRightToClimate",
     href: "#",
   },
@@ -89,8 +96,8 @@ const PROJECTS: Project[] = [
     location: "Pan India",
     ledBy: "Q-LUB",
     partners: [
-      "The Automotive Research Association (ARAI)",
-      "Society of Indian Automobile Manufacturers (SIAM)",
+      { name: "The Automotive Research Association (ARAI)" },
+      { name: "Society of Indian Automobile Manufacturers (SIAM)" },
     ],
     image: "projectQLub",
     href: "#",
@@ -105,7 +112,7 @@ const PROJECTS: Project[] = [
       "Reliable on-site hydrogen solutions enabling cleaner steel production and energy independence.",
     location: "Pan India",
     ledBy: "AquaWelder",
-    partners: ["SAIL", "TATA STEEL"],
+    partners: [{ name: "SAIL" }, { name: "TATA STEEL" }],
     image: "projectAquaWelder",
     href: "#",
   },
@@ -186,7 +193,14 @@ export default function ProjectsPage() {
 
 /* ── Row ──────────────────────────────────────────────────────────────── */
 
+const CTA_CLASS =
+  "inline-flex items-center gap-2 rounded-md bg-mission px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-mission-dark";
+
 function ProjectRow({ project: p }: { project: Project }) {
+  // Project 01 (Carbon Mandi) is treated differently: it keeps its Strategic
+  // Partners, uses a compact emblem logo, and links Know More to the home page.
+  const isFirst = p.no === "01";
+
   return (
     <article className="grid overflow-hidden rounded-2xl bg-paper ring-1 ring-line lg:grid-cols-[120px_minmax(0,1fr)_minmax(0,1.05fr)]">
       {/* Number panel */}
@@ -208,7 +222,11 @@ function ProjectRow({ project: p }: { project: Project }) {
       <div className="order-3 flex flex-col p-6 lg:order-2 lg:p-8">
         {/* Brand */}
         <div className="flex items-center">
-          <BrandLogo src={p.logo} alt={p.brand} className="max-h-10 max-w-[170px]" />
+          <BrandLogo
+            src={p.logo}
+            alt={p.brand}
+            className={isFirst ? "max-h-11 max-w-44" : "max-h-16 max-w-56"}
+          />
         </div>
 
         {/* Title */}
@@ -234,30 +252,53 @@ function ProjectRow({ project: p }: { project: Project }) {
             <BrandLogo src={p.logo} alt={p.ledBy} className="max-h-7 max-w-30" />
           </Meta>
 
-          <Meta label={p.partners.length > 1 ? "Strategic Partners" : "Strategic Partner"}>
-            <ul className="flex flex-wrap items-center gap-x-4 gap-y-2">
-              {p.partners.map((partner) => (
-                <li
-                  key={partner}
-                  className="flex items-center gap-2 text-[13px] font-medium text-ink"
-                >
-                  <LogoPlaceholder size="xs" label={partner} />
-                  {partner}
-                </li>
-              ))}
-            </ul>
-          </Meta>
+          {isFirst && (
+            <Meta
+              label={
+                p.partners.length > 1
+                  ? "Strategic Partners"
+                  : "Strategic Partner"
+              }
+            >
+              <ul className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                {p.partners.map((partner) => (
+                  <li
+                    key={partner.name}
+                    className="flex items-center gap-2 text-[13px] font-medium text-ink"
+                  >
+                    {partner.logo ? (
+                      <BrandLogo
+                        src={partner.logo}
+                        alt={partner.name}
+                        className="max-h-6 max-w-20"
+                      />
+                    ) : (
+                      <LogoPlaceholder size="xs" label={partner.name} />
+                    )}
+                    {partner.name}
+                  </li>
+                ))}
+              </ul>
+            </Meta>
+          )}
         </div>
 
-        {/* CTA */}
+        {/* CTA — project 01 goes home; the rest open the contact form. */}
         <div className="mt-auto pt-7">
-          <Link
-            href={p.href}
-            className="inline-flex items-center gap-2 rounded-md bg-mission px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.12em] text-white transition-colors hover:bg-mission-dark"
-          >
-            Know More
-            <ArrowRight size={15} strokeWidth={2.2} />
-          </Link>
+          {isFirst ? (
+            <Link href={p.href} className={CTA_CLASS}>
+              Know More
+              <ArrowRight size={15} strokeWidth={2.2} />
+            </Link>
+          ) : (
+            <ContactCtaButton
+              source={`National Project — ${p.brand}`}
+              className={CTA_CLASS}
+            >
+              Know More
+              <ArrowRight size={15} strokeWidth={2.2} />
+            </ContactCtaButton>
+          )}
         </div>
       </div>
 
