@@ -22,6 +22,13 @@ const nextConfig: NextConfig = {
         destination: "/",
         permanent: true,
       },
+      // Old Shopify product URL that still ranks — send it to the Mandi page so
+      // the search equity carries over instead of hitting a 404.
+      {
+        source: "/products/bamboo-facial-tissues-200-pulls",
+        destination: "/mandi",
+        permanent: true,
+      },
     ];
   },
 };
