@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/custom/Navbar";
 import { Footer } from "@/components/custom/Footer";
+import { RouteLoader } from "@/components/custom/RouteLoader";
 import { ContactModalProvider } from "@/components/custom/contact/ContactModalProvider";
 
 export default function SiteLayout({
@@ -9,6 +10,7 @@ export default function SiteLayout({
 }) {
   return (
     <ContactModalProvider>
+      <RouteLoader />
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />
